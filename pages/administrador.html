@@ -34,18 +34,15 @@
                             <a class="nav-link" href="./administrador.html">Administrar</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="bi bi-moon-stars pe-1"></i>
+                            <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="bi bi-brightness-high pe-1"></i>
                             </span>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Light</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li><a class="dropdown-item" href="#">Dark</a></li>
+                              <li><a class="dropdown-item" href="#"><i class="bi bi-moon-stars pe-1"> </i>Light</a></li>
+                              <li><hr class="dropdown-divider" /></li>
+                              <li><a class="dropdown-item" href="#"><i class="bi bi-moon-stars-fill pe-1"> </i>Dark</a></li>
                             </ul>
-                        </li>
+                          </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Logout</a>
                         </li>
@@ -81,15 +78,15 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="descripcionPelicula" class="form-label">Descripción *</label>
-                                    <textarea type="text" class="form-control" id="descripcionPelicula" rows="3" placeholder="Ej. Lorem ipsum dolor sit amet." requierd minlength="1" maxlength="1000"></textarea>
+                                    <textarea type="text" class="form-control" id="descripcionPelicula" rows="3" placeholder="Ej. Lorem ipsum dolor sit amet." required minlength="1" maxlength="1000"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="imgPelicula" class="form-label">Imágen *</label>
-                                    <input type="url" class="form-control" id="imgPelicula" placeholder="Ej. https://www.filmaffinity.com/es/film603309.html" requierd>
+                                    <input type="url" class="form-control" id="imgPelicula" placeholder="Ej. https://www.filmaffinity.com/es/film603309.html" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="generoPelicula" class="form-label">Género</label>
-                                    <select class="form-select" id="generoPelicula" requierd>
+                                    <select class="form-select" id="generoPelicula" required>
                                         <option selected disabled>Elige una opción...</option>
                                         <option value="">Crimen</option>
                                         <option value="">Aventura</option>
@@ -110,7 +107,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="repartoPelicula" class="form-label">Reparto (cada actor separado por ",")</label>
-                                    <input type="text" class="form-control" id="repartoPelicula" placeholder="Ej. Crhis Pratt, Anya Taylor-Joy, Chalie Day, Jack Black">
+                                    <input type="text" class="form-control" id="repartoPelicula" placeholder="Ej. Chris Pratt, Anya Taylor-Joy, Chalie Day, Jack Black">
                                 </div>
                             </div>
                             <div class="modal-footer">
