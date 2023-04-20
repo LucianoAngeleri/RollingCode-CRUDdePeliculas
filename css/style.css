@@ -1,0 +1,18 @@
+
+body{
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+}
+main{
+    flex-grow:1;
+}
+td{
+    max-width: calc(100vw/6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+textarea{
+    resize: none;
+}
