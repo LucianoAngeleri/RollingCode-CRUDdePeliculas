@@ -13,6 +13,7 @@ let img = document.getElementById("imgPelicula")
 let genero = document.getElementById("generoPelicula")
 let anio = document.getElementById("anioPelicula")
 let duracion = document.getElementById("duracionPelicula")
+let pais = document.getElementById("paisPelicula")
 let reparto = document.getElementById("repartoPelicula")
 let alerta = document.getElementById("alerta")
 
@@ -31,7 +32,7 @@ btnAgragarPelicula.addEventListener("click",desplegarModalPelicula)
   }
   function crearPelicula(){
     //Validar los datos
-    const resumen = resumenValidaciones(titulo.value)
+    const resumen = resumenValidaciones(titulo.value, descripcion.value, pais.value, reparto.value, anio.value)
     //Esta funcion muestra un mensaje si no valida
     mostrarMensajeError(resumen)
     //Si los datos son validos:
