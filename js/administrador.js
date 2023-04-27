@@ -32,7 +32,11 @@ btnAgragarPelicula.addEventListener("click",desplegarModalPelicula)
   function crearPelicula(){
     //Validar los datos
     const resumen = resumenValidaciones(titulo.value)
+    //Esta funcion muestra un mensaje si no valida
+    mostrarMensajeError(resumen)
+    //Si los datos son validos:
     if(resumen.length === 0){
+       //Agregar la Pelicula en el arreglo de peliculas
       const peliculaEjemplo = new Pelicula(
         "0001",
         "El Padrino",
@@ -44,15 +48,15 @@ btnAgragarPelicula.addEventListener("click",desplegarModalPelicula)
           "Estados Unidos",
           ["Marlon Brando", "Al Pacino", "James Caan"]
         );
+        //Guardar el array en localStorage
         console.log(peliculaEjemplo)
-    }else{
-      console.log("Hay un error")
     }
-    //Si los datos son validos:
-    
-      //Agregar la Pelicula en el arreglo de peliculas
-
-      //Guardar el array en localStorage
-
-      //Si los datos no son válidos, mostrar un mensaje de error
   }
+function mostrarMensajeError(resumen) {
+  if(resumen.length > 0 ){
+    alerta.className = "alert alert-danger"
+    alerta.innerHTML= resumen
+  }else{
+    alerta.className = "alert alert-danger d-none"
+  }
+}
