@@ -19,6 +19,7 @@ let alerta = document.getElementById("alerta")
 
 
 
+
 formularioPelicula.addEventListener("submit",prepararFromularioPelicula)
 btnAgragarPelicula.addEventListener("click",desplegarModalPelicula)
 
@@ -32,9 +33,11 @@ btnAgragarPelicula.addEventListener("click",desplegarModalPelicula)
   }
   function crearPelicula(){
     //Validar los datos
-    const resumen = resumenValidaciones(titulo.value, descripcion.value, pais.value, reparto.value, anio.value, duracion.value)
+    const resumen = resumenValidaciones(titulo.value, descripcion.value, pais.value, reparto.value, anio.value, duracion.value, img, genero.value)
     //Esta funcion muestra un mensaje si no valida
     mostrarMensajeError(resumen)
+    console.log(img.value)
+
     //Si los datos son validos:
     if(resumen.length === 0){
        //Agregar la Pelicula en el arreglo de peliculas
