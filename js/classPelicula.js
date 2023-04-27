@@ -9,8 +9,8 @@ export default
         #duracion;
         #pais;
         #reparto;
-        constructor(titulo, descripcion, imagen, genero, anio, duracion, pais, reparto) {
-          this.#codigo = 0;
+        constructor(codigo= uuidv4(), descripcion, imagen, genero, anio, duracion, pais, reparto) {
+          this.#codigo = codigo;
           this.#titulo = titulo;
           this.#descripcion = descripcion;
           this.#imagen = imagen;
