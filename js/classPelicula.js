@@ -9,7 +9,7 @@ export default
         #duracion;
         #pais;
         #reparto;
-        constructor(codigo= uuidv4(), descripcion, imagen, genero, anio, duracion, pais, reparto) {
+        constructor(codigo= uuidv4(),titulo, descripcion, imagen, genero, anio, duracion, pais, reparto) {
           this.#codigo = codigo;
           this.#titulo = titulo;
           this.#descripcion = descripcion;
@@ -90,6 +90,19 @@ export default
       
         set reparto(reparto) {
           this.#reparto = reparto;
+        }
+        toJSON(){
+          return{
+            codigo : this.codigo,
+            titulo : this.titulo,
+            descripcion : this.descripcion,
+            imagen : this.imagen,
+            genero : this.genero,
+            anio : this.anio,
+            duracion : this.duracion,
+            pais : this.pais,
+            reparto : this.reparto
+          }
         }
       }
 

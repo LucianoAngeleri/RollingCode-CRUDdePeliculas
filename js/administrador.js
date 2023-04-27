@@ -28,20 +28,17 @@ btnAgragarPelicula.addEventListener("click",desplegarModalPelicula)
   }
   function prepararFromularioPelicula(e){
     e.preventDefault();
-    console.log("En el evento submit")
     crearPelicula();
   }
   function crearPelicula(){
     //Validar los datos
-    const resumen = resumenValidaciones(titulo.value, descripcion.value, pais.value, reparto.value, anio.value, duracion.value, img, genero.value)
+    const resumen = resumenValidaciones(titulo.value, descripcion.value, pais.value, reparto.value, anio.value, duracion.value, img.value, genero.value)
     //Esta funcion muestra un mensaje si no valida
     mostrarMensajeError(resumen)
-    console.log(img.value)
-
     //Si los datos son validos:
     if(resumen.length === 0){
        //Agregar la Pelicula en el arreglo de peliculas
-      const peliculaEjemplo = new Pelicula(
+      const peliculaNueva = new Pelicula(
         undefined,
         titulo.value,
         descripcion.value,
@@ -49,11 +46,17 @@ btnAgragarPelicula.addEventListener("click",desplegarModalPelicula)
         genero.value,
         anio.value,
         duracion.value,
-        pais.calue,
+        pais.value,
         reparto.value
         );
+        //Guardar en un array la pelicula nueva
+        listaPeliculas.push(peliculaNueva)
         //Guardar el array en localStorage
-        console.log(peliculaEjemplo)
+        guardarEnLocalStorage();
+        limpiarForm();
+
+        console.log(peliculaNueva)
+        //Mostrar un mensaje de éxito.
     }
   }
 function mostrarMensajeError(resumen) {
@@ -63,4 +66,10 @@ function mostrarMensajeError(resumen) {
   }else{
     alerta.className = "alert alert-danger d-none"
   }
+}
+function guardarEnLocalStorage() {
+  localStorage.setItem("listaPeliculas", JSON.stringify(listaPeliculas))
+}
+function limpiarForm() {
+  formularioPelicula.reset()
 }
