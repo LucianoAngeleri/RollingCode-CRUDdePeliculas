@@ -1,7 +1,5 @@
 let temaConfigurado = JSON.parse(localStorage.getItem("theme")) || "dark";
 cambiarTema(temaConfigurado)
-cambiarIconoTema(temaConfigurado)
-console.log(themeIcon)
 let btnThemeDark = document.getElementById("btnThemeDark")
 let btnThemeLight = document.getElementById("btnThemeLight")
 
