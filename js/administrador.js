@@ -1,15 +1,23 @@
 import Pelicula from "./classPelicula.js";
 
 let formularioPelicula = document.getElementById("formPelicula")
+let agregarPelicula = new bootstrap.Modal(document.getElementById("modalPelicula"));
+const btnAgragarPelicula = document.getElementById("btnAgragarPelicula")
+
 
 formularioPelicula.addEventListener("submit",prepararFromularioPelicula)
+btnAgragarPelicula.addEventListener("click",desplegarModalPelicula)
 
+  function desplegarModalPelicula() {
+    agregarPelicula.show();
+  }
   function prepararFromularioPelicula(e){
     e.preventDefault();
     console.log("En el evento submit")
     crearPelicula();
   }
   function crearPelicula(){
+
     const peliculaEjemplo = new Pelicula(
       "0001",
       "El Padrino",
@@ -23,4 +31,3 @@ formularioPelicula.addEventListener("submit",prepararFromularioPelicula)
       );
     console.log(peliculaEjemplo)
   }
-  
