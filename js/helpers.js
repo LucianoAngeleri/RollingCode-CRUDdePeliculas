@@ -12,8 +12,15 @@ function validarAnio(anio, min,max) {
         return false
     }
 }
+function validarDuracion(duracion, min,max) {
+    if (duracion >= min && duracion <= max ) {
+        return true
+    }else{
+        return false
+    }
+}
 
-export function resumenValidaciones(titulo, descripcion, pais, reparto, anio) {
+export function resumenValidaciones(titulo, descripcion, pais, reparto, anio, duracion) {
     let resumen ="";
     const anioActual = new Date().getFullYear();
     if (! validarCantChar(titulo,2,100)) {
@@ -30,7 +37,10 @@ export function resumenValidaciones(titulo, descripcion, pais, reparto, anio) {
         resumen +="El reparto debe contener entre 2 y 255 caracteres.<br>"
     }
     if (! validarAnio(anio,1990, anioActual+1) ) {
-        resumen +=`El año debe contener estar entre 1990 y ${anioActual+1} <br>` 
+        resumen +=`El año debe contener estar entre 1990 y ${anioActual+1}.<br>` 
+    }
+    if (! validarDuracion(duracion,10,240) ) {
+        resumen +=`La duración de la película debe ser entre 10 y 240 minutos.<br>` 
     }
     return resumen
 }

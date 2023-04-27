@@ -32,7 +32,7 @@ btnAgragarPelicula.addEventListener("click",desplegarModalPelicula)
   }
   function crearPelicula(){
     //Validar los datos
-    const resumen = resumenValidaciones(titulo.value, descripcion.value, pais.value, reparto.value, anio.value)
+    const resumen = resumenValidaciones(titulo.value, descripcion.value, pais.value, reparto.value, anio.value, duracion.value)
     //Esta funcion muestra un mensaje si no valida
     mostrarMensajeError(resumen)
     //Si los datos son validos:
