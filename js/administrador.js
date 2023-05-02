@@ -17,13 +17,13 @@ cargaInicial();
 
 function cargaInicial() {
   if (listaPeliculas.length > 0) {
-    listaPeliculas = listaPeliculas.map((pelicula) => crearFila(pelicula));
+    listaPeliculas = listaPeliculas.map((pelicula,posicion) => crearFila(pelicula,posicion+1));
   }
 }
-function crearFila(objetoPelicula) {
+function crearFila(objetoPelicula,fila) {
   let tablaPelicula = document.getElementById("tablaPelicula");
   tablaPelicula.innerHTML += `<tr>
-  <th scope="row">1</th>
+  <th scope="row">${fila}</th>
   <td>${objetoPelicula.titulo}</td>
   <td>${objetoPelicula.descripcion}</td>
   <td>${objetoPelicula.imagen}</td>
