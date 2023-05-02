@@ -9,7 +9,7 @@ let listaPeliculas = JSON.parse(localStorage.getItem("listaPeliculas")) || [];
 
 //Si tengo peliculas almacenadas en el array, las transformo a objeto tipo Pelicula
 if (listaPeliculas.length > 0) {
-  listaPeliculas = listaPeliculas.map((pelicula) => new Pelicula(pelicula.odigo,pelicula.titulo,pelicula.descripcion,pelicula.imagen,pelicula.genero,pelicula.anio,pelicula.pais,pelicula.reparto));
+  listaPeliculas = listaPeliculas.map((pelicula) => new Pelicula(pelicula.codigo,pelicula.titulo,pelicula.descripcion,pelicula.imagen,pelicula.genero,pelicula.anio,pelicula.pais,pelicula.reparto));
 }
 //{...pelicula}
 //pelicula.codigo, pelicula.titulo, etc
