@@ -89,9 +89,13 @@ function crearPelicula() {
     //Guardar el array en localStorage
     guardarEnLocalStorage();
     limpiarForm();
-
-    console.log(peliculaNueva);
+    crearFila(peliculaNueva,listaPeliculas.length)
     //Mostrar un mensaje de éxito.
+    Swal.fire(
+      'Película Creada!',
+      'La película fue creada con éxito',
+      'success'
+)
   }
 }
 function mostrarMensajeError(resumen) {
