@@ -116,18 +116,33 @@ function limpiarForm() {
   formularioPelicula.reset();
 }
 window.borrarPelicula = (codigo)=>{
-  //buscar del array, en donde esté el elemento que tiene ese código
-  let posicionPelicula = listaPeliculas.findIndex((pelicula)=>pelicula.codigo === codigo)  
-  //Borrar la pelicula del array (splice)
-  listaPeliculas.splice(posicionPelicula,1)
-  //Actualizar el local Storage
-  guardarEnLocalStorage()
-  //Borrar fila de la tabla
-  let tablaPelicula = document.getElementById("tablaPelicula");
-  tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula])
-
-
-
-  //Mostrar un cartel al usuario
-
-}
+  Swal.fire({
+    title: 'Estas seguro de borrar la Película?',
+    text: "No podras volver atrás",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, borrala!',
+    cancelButtonText: 'No, cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+    //Agragar el código para eliminar la película
+    //buscar del array, en donde esté el elemento que tiene ese código
+    let posicionPelicula = listaPeliculas.findIndex((pelicula)=>pelicula.codigo === codigo)  
+    //Borrar la pelicula del array (splice)
+    listaPeliculas.splice(posicionPelicula,1)
+    //Actualizar el local Storage
+    guardarEnLocalStorage()
+    //Borrar fila de la tabla
+    let tablaPelicula = document.getElementById("tablaPelicula");
+    tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula])
+    //muestra la ventana de éxito
+      Swal.fire(
+        'Película eliminada!',
+        'Se ha elimnado la Película de la base de datos.',
+        'success'
+      )
+    }
+  })
+ }
