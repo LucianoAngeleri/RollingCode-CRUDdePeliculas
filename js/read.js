@@ -1,14 +1,18 @@
+import  Pelicula  from "./classPelicula.js";
 let listaPeliculas = JSON.parse(localStorage.getItem("listaPeliculas")) || [];
-console.log(listaPeliculas)
+if (listaPeliculas.length > 0) {
+  listaPeliculas = listaPeliculas.map((pelicula) => new Pelicula(pelicula.codigo,pelicula.titulo,pelicula.descripcion,pelicula.imagen,pelicula.genero,pelicula.anio,pelicula.pais,pelicula.reparto));
+}
+console.log(listaPeliculas);
 cargaInicial()
 
 function cargaInicial() {
     if (listaPeliculas.length > 0) {
-      listaPeliculas = listaPeliculas.map((pelicula) => crearCardPelicula(pelicula));
+      listaPeliculas.map((pelicula) => crearCardPelicula(pelicula));
     }
   }
 
-function crearCardPelicula(objetoPelicula) {
+  function crearCardPelicula(objetoPelicula) {
     let contenedorCardPelicula = document.getElementById("contenedorCardPelicula")
     contenedorCardPelicula.innerHTML += `
     <div class="col">
@@ -23,6 +27,5 @@ function crearCardPelicula(objetoPelicula) {
         </div>
       </div>
     </div>
-  </div>
-    `
+  </div>`;
 }

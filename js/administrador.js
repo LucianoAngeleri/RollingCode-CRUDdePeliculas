@@ -5,36 +5,6 @@ let formularioPelicula = document.getElementById("formPelicula");
 let agregarPelicula = new bootstrap.Modal(document.getElementById("modalPelicula"));
 const btnAgragarPelicula = document.getElementById("btnAgragarPelicula");
 
-let listaPeliculas = JSON.parse(localStorage.getItem("listaPeliculas")) || [];
-
-//Si tengo peliculas almacenadas en el array, las transformo a objeto tipo Pelicula
-if (listaPeliculas.length > 0) {
-  listaPeliculas = listaPeliculas.map((pelicula) => new Pelicula(pelicula.codigo,pelicula.titulo,pelicula.descripcion,pelicula.imagen,pelicula.genero,pelicula.anio,pelicula.pais,pelicula.reparto));
-}
-//{...pelicula}
-//pelicula.codigo, pelicula.titulo, etc
-cargaInicial();
-
-function cargaInicial() {
-  if (listaPeliculas.length > 0) {
-    listaPeliculas = listaPeliculas.map((pelicula,posicion) => crearFila(pelicula,posicion+1));
-  }
-}
-function crearFila(objetoPelicula,fila) {
-  let tablaPelicula = document.getElementById("tablaPelicula");
-  tablaPelicula.innerHTML += `<tr>
-  <th scope="row">${fila}</th>
-  <td>${objetoPelicula.titulo}</td>
-  <td>${objetoPelicula.descripcion}</td>
-  <td>${objetoPelicula.imagen}</td>
-  <td>${objetoPelicula.genero}</td>
-  <td>
-  <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square fs-3"></i></button>
-  <button type="button" class="btn btn-danger"><i class="bi bi-x-square fs-3"></i></button>
-  </td>
-  </tr>`;
-}
-
 let codigo = document.getElementById("codigoPelicula");
 let titulo = document.getElementById("tituloPelicula");
 let descripcion = document.getElementById("descripcionPelicula");
@@ -45,6 +15,38 @@ let duracion = document.getElementById("duracionPelicula");
 let pais = document.getElementById("paisPelicula");
 let reparto = document.getElementById("repartoPelicula");
 let alerta = document.getElementById("alerta");
+
+let listaPeliculas = JSON.parse(localStorage.getItem("listaPeliculas")) || [];
+
+//Si tengo peliculas almacenadas en el array, las transformo a objeto tipo Pelicula
+if (listaPeliculas.length > 0) {
+  listaPeliculas = listaPeliculas.map((pelicula) => new Pelicula(pelicula.codigo,pelicula.titulo,pelicula.descripcion,pelicula.imagen,pelicula.genero,pelicula.anio,pelicula.duracion,pelicula.pais,pelicula.reparto));
+}
+//{...pelicula}
+//pelicula.codigo, pelicula.titulo, etc
+cargaInicial();
+
+function cargaInicial() {
+  if (listaPeliculas.length > 0) {
+    listaPeliculas.map((pelicula,posicion) => crearFila(pelicula,posicion+1));
+  }
+
+}
+
+function crearFila(objetoPelicula,fila) {
+  let tablaPelicula = document.getElementById("tablaPelicula");
+  tablaPelicula.innerHTML += `<tr>
+  <th scope="row">${fila}</th>
+  <td>${objetoPelicula.titulo}</td>
+  <td>${objetoPelicula.descripcion}</td>
+  <td>${objetoPelicula.imagen}</td>
+  <td>${objetoPelicula.genero}</td>
+  <td>
+  <button type="button" class="btn btn-warning" onclick="editarPelicula('${objetoPelicula.codigo}')"><i class="bi bi-pencil-square fs-3"></i></button>
+  <button type="button" class="btn btn-danger" onclick="borrarPelicula('${objetoPelicula.codigo}')"><i class="bi bi-x-square fs-3"></i></button>
+  </td>
+  </tr>`;
+}
 
 formularioPelicula.addEventListener("submit", prepararFromularioPelicula);
 btnAgragarPelicula.addEventListener("click", desplegarModalPelicula);
@@ -88,14 +90,15 @@ function crearPelicula() {
     listaPeliculas.push(peliculaNueva);
     //Guardar el array en localStorage
     guardarEnLocalStorage();
-    limpiarForm();
+    //Renderizar la fila de la pelicula
     crearFila(peliculaNueva,listaPeliculas.length)
     //Mostrar un mensaje de éxito.
     Swal.fire(
       'Película Creada!',
       'La película fue creada con éxito',
-      'success'
-)
+      'success')
+    //Resetear el formulario 
+    limpiarForm();
   }
 }
 function mostrarMensajeError(resumen) {
@@ -111,4 +114,20 @@ function guardarEnLocalStorage() {
 }
 function limpiarForm() {
   formularioPelicula.reset();
+}
+window.borrarPelicula = (codigo)=>{
+  //buscar del array, en donde esté el elemento que tiene ese código
+  let posicionPelicula = listaPeliculas.findIndex((pelicula)=>pelicula.codigo === codigo)  
+  //Borrar la pelicula del array (splice)
+  listaPeliculas.splice(posicionPelicula,1)
+  //Actualizar el local Storage
+  guardarEnLocalStorage()
+  //Borrar fila de la tabla
+  let tablaPelicula = document.getElementById("tablaPelicula");
+  tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula])
+
+
+
+  //Mostrar un cartel al usuario
+
 }
