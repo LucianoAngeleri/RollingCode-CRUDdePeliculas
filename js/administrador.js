@@ -8,13 +8,14 @@ const btnAgragarPelicula = document.getElementById("btnAgragarPelicula");
 let codigo = document.getElementById("codigoPelicula");
 let titulo = document.getElementById("tituloPelicula");
 let descripcion = document.getElementById("descripcionPelicula");
-let img = document.getElementById("imgPelicula");
+let imagen = document.getElementById("imgPelicula");
 let genero = document.getElementById("generoPelicula");
 let anio = document.getElementById("anioPelicula");
 let duracion = document.getElementById("duracionPelicula");
 let pais = document.getElementById("paisPelicula");
 let reparto = document.getElementById("repartoPelicula");
 let alerta = document.getElementById("alerta");
+let altaPelicula = true;
 
 let listaPeliculas = JSON.parse(localStorage.getItem("listaPeliculas")) || [];
 
@@ -42,7 +43,7 @@ function crearFila(objetoPelicula,fila) {
   <td>${objetoPelicula.imagen}</td>
   <td>${objetoPelicula.genero}</td>
   <td>
-  <button type="button" class="btn btn-warning" onclick="editarPelicula('${objetoPelicula.codigo}')"><i class="bi bi-pencil-square fs-3"></i></button>
+  <button type="button" class="btn btn-warning" onclick="prepararPelicula('${objetoPelicula.codigo}')"><i class="bi bi-pencil-square fs-3"></i></button>
   <button type="button" class="btn btn-danger" onclick="borrarPelicula('${objetoPelicula.codigo}')"><i class="bi bi-x-square fs-3"></i></button>
   </td>
   </tr>`;
@@ -56,7 +57,11 @@ function desplegarModalPelicula() {
 }
 function prepararFromularioPelicula(e) {
   e.preventDefault();
-  crearPelicula();
+  if (altaPelicula) {
+    crearPelicula();
+  }else{
+    editarPelicula();
+  }
 }
 function crearPelicula() {
   //Validar los datos
@@ -67,7 +72,7 @@ function crearPelicula() {
     reparto.value,
     anio.value,
     duracion.value,
-    img.value,
+    imagen.value,
     genero.value
   );
   //Esta funcion muestra un mensaje si no valida
@@ -79,7 +84,7 @@ function crearPelicula() {
       undefined,
       titulo.value,
       descripcion.value,
-      img.value,
+      imagen.value,
       genero.value,
       anio.value,
       duracion.value,
@@ -145,4 +150,53 @@ window.borrarPelicula = (codigo)=>{
       )
     }
   })
+ }
+ window.prepararPelicula = (codigoPelicula)=>{
+  console.log(codigoPelicula)
+  //Tener los datos de la pelicula y cargarlo en el formulario
+  const peliculaBuscada = listaPeliculas.find((pelicula) => pelicula.codigo === codigoPelicula);
+  //Cargamos los datos en el modal
+  codigo.value = peliculaBuscada.codigo;
+  titulo.value = peliculaBuscada.titulo;
+  descripcion.value = peliculaBuscada.descripcion;
+  imagen.value = peliculaBuscada.imagen;
+  genero.value = peliculaBuscada.genero;
+  anio.value = peliculaBuscada.anio;
+  duracion.value = peliculaBuscada.duracion;
+  pais.value = peliculaBuscada.pais;
+  reparto.value = peliculaBuscada.reparto;
+  //Mostrmos el modal
+  agregarPelicula.show();
+  //Cambiamos el altaPelicula para editar la pelicula
+  altaPelicula = false;
+ }
+ function editarPelicula() {
+  console.log("Editar Pelicula");
+    //Buscar del array, en donde esté el elemento que tiene ese código
+    let posicionPelicula = listaPeliculas.findIndex((pelicula)=> pelicula.codigo === codigo.value)
+    console.log(posicionPelicula);
+    //Validar los datos
+    const resumen = resumenValidaciones(
+      titulo.value,
+      descripcion.value,
+      pais.value,
+      reparto.value,
+      anio.value,
+      duracion.value,
+      imagen.value,
+      genero.value
+    );
+    //Esta funcion muestra un mensaje si no valida
+    mostrarMensajeError(resumen);
+
+    //Editar los valores de la pelicula dentro del array
+    // listaPeliculas[posicionPelicula].titulo = titulo.value
+
+    //Actaulizar el local storage
+
+    //Actualizar la fila en la tabla
+
+    //Mostrar mensaje de actualizacion exitosa
+
+    //Limpiar el fomrulario
  }
