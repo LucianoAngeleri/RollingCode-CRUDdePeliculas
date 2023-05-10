@@ -104,6 +104,7 @@ function crearPelicula() {
       'success')
     //Resetear el formulario 
     limpiarForm();
+     //mostrar un mensaje intuitivo
   }
 }
 function mostrarMensajeError(resumen) {
@@ -152,10 +153,9 @@ window.borrarPelicula = (codigo)=>{
   })
  }
  window.prepararPelicula = (codigoPelicula)=>{
-  console.log(codigoPelicula)
-  //Tener los datos de la pelicula y cargarlo en el formulario
-  const peliculaBuscada = listaPeliculas.find((pelicula) => pelicula.codigo === codigoPelicula);
-  //Cargamos los datos en el modal
+   //Tener los datos de la pelicula y cargarlo en el formulario
+   const peliculaBuscada = listaPeliculas.find((pelicula) => pelicula.codigo === codigoPelicula);
+   //Cargamos los datos en el modal
   codigo.value = peliculaBuscada.codigo;
   titulo.value = peliculaBuscada.titulo;
   descripcion.value = peliculaBuscada.descripcion;
@@ -190,10 +190,17 @@ window.borrarPelicula = (codigo)=>{
     mostrarMensajeError(resumen);
 
     //Editar los valores de la pelicula dentro del array
-    // listaPeliculas[posicionPelicula].titulo = titulo.value
+    listaPeliculas[posicionPelicula].titulo = titulo.value;
+    listaPeliculas[posicionPelicula].descripcion = descripcion.value;
+    listaPeliculas[posicionPelicula].pais = pais.value;
+    listaPeliculas[posicionPelicula].reparto = reparto.value;
+    listaPeliculas[posicionPelicula].anio = anio.value;
+    listaPeliculas[posicionPelicula].duracion = duracion.value;
+    listaPeliculas[posicionPelicula].imagen = imagen.value;
+    listaPeliculas[posicionPelicula].genero = genero.value;
 
     //Actaulizar el local storage
-
+    guardarEnLocalStorage();
     //Actualizar la fila en la tabla
 
     //Mostrar mensaje de actualizacion exitosa
