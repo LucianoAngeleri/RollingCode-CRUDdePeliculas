@@ -202,8 +202,17 @@ window.borrarPelicula = (codigo)=>{
     //Actaulizar el local storage
     guardarEnLocalStorage();
     //Actualizar la fila en la tabla
-
+    let tablaPelicula = document.getElementById("tablaPelicula");
+      tablaPelicula.children[posicionPelicula].children[1].innerHTML = titulo.value
+      tablaPelicula.children[posicionPelicula].children[2].innerHTML = descripcion.value
+      tablaPelicula.children[posicionPelicula].children[3].innerHTML = imagen.value
+      tablaPelicula.children[posicionPelicula].children[4].innerHTML = genero.value
     //Mostrar mensaje de actualizacion exitosa
-
+    Swal.fire(
+      'Película Modificadad!',
+      'La película fue modificada con éxito',
+      'success')
     //Limpiar el fomrulario
+    limpiarForm();
+    agregarPelicula.hide();
  }
