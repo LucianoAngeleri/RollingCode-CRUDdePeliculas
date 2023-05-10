@@ -53,6 +53,8 @@ formularioPelicula.addEventListener("submit", prepararFromularioPelicula);
 btnAgragarPelicula.addEventListener("click", desplegarModalPelicula);
 
 function desplegarModalPelicula() {
+  limpiarForm();
+  altaPelicula = true;
   agregarPelicula.show();
 }
 function prepararFromularioPelicula(e) {
@@ -214,5 +216,6 @@ window.borrarPelicula = (codigo)=>{
       'success')
     //Limpiar el fomrulario
     limpiarForm();
+    //Cerrar el modal
     agregarPelicula.hide();
  }
